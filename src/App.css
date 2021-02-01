@@ -14,8 +14,8 @@
 }
 
 .ce-active-chat-card {
-  background-color: #cabcdc !important;
-  border: 4px solid #cabcdc !important;
+  background-color: #89cff0 !important;
+  border: 4px solid #89cff0 !important;
   border-radius: 0px !important;
 }
 
@@ -34,7 +34,7 @@
 
 .ce-primary-button {
   border-radius: 6px !important;
-  background-color: #7554a0 !important;
+  background-color: #003fff !important;
   position: relative;
   bottom: 1px;
 }
@@ -83,13 +83,13 @@
 }
 
 .chat-title {
-  color: #7554a0;
+  color: #89cff0;
   font-weight: 800;
   font-size: 24px;
 }
 
 .chat-subtitle {
-  color: #7554a0;
+  color: #89cff0;
   font-weight: 600;
   font-size: 12px;
   padding-top: 4px;
@@ -130,7 +130,6 @@
   object-fit: cover;
   border-radius: 6px;
   height: 30vw;
-  /* width: 30vw; */
   max-height: 200px;
   max-width: 200px;
   min-height: 100px;

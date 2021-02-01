@@ -1,19 +1,34 @@
-import React from 'react'
-import MessageForm from './MessageForm'
 import MyMessage from './MyMessage'
 import TheirMessage from './TheirMessage'
+import MessageForm from './MessageForm'
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, messages } = props
 
   const chat = chats && chats[activeChat]
-  console.log(chats, activeChat, userName)
+
+  const renderReadReceipts = (message, isMyMessage) =>
+    chat.people.map(
+      (person, index) =>
+        person.last_read === message.id && (
+          <div
+            key={`read_${index}`}
+            className='read-receipt'
+            style={{
+              float: isMyMessage ? 'right' : 'left',
+              backgroundImage:
+                person.person.avatar && `url(${person.person.avatar})`,
+            }}
+          />
+        )
+    )
+
   const renderMessages = () => {
     const keys = Object.keys(messages)
 
     return keys.map((key, index) => {
       const message = messages[key]
-      const lastMessagekey = index === 0 ? null : keys[index - 1]
+      const lastMessageKey = index === 0 ? null : keys[index - 1]
       const isMyMessage = userName === message.sender.username
 
       return (
@@ -24,25 +39,24 @@ const ChatFeed = (props) => {
             ) : (
               <TheirMessage
                 message={message}
-                lastMessage={message[lastMessagekey]}
+                lastMessage={messages[lastMessageKey]}
               />
             )}
           </div>
           <div
             className='read-receipts'
             style={{
-              marginRight: isMyMessage ? '18px' : '8px',
+              marginRight: isMyMessage ? '18px' : '0px',
               marginLeft: isMyMessage ? '0px' : '68px',
             }}>
-            read-receipts
+            {renderReadReceipts(message, isMyMessage)}
           </div>
         </div>
       )
     })
   }
-  renderMessages()
 
-  if (!chat) return <div>Loading...</div>
+  if (!chat) return <div />
 
   return (
     <div className='chat-feed'>

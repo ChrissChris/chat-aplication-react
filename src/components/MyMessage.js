@@ -11,7 +11,18 @@ const MyMessage = ({ message }) => {
       />
     )
   }
-  return <div>My Message</div>
+  return (
+    <div
+      className='message'
+      style={{
+        float: 'right',
+        marginRight: '18px',
+        color: 'white',
+        backgroundColor: '#89cff0',
+      }}>
+      {message.text}
+    </div>
+  )
 }
 
 export default MyMessage
